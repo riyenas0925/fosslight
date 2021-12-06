@@ -13,8 +13,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
       - name: Build the stack
-        run: docker-compose up --build -d
+        run: docker buildx bake
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
         with:
